@@ -1,5 +1,7 @@
 package com.example.Mr_X.model;
 
+import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
+
 /**
  * this class to testing push from idea to github at main branch
  *
@@ -10,6 +12,8 @@ package com.example.Mr_X.model;
  */
 public class TestPushFromMainBranch {
 
-
+    public static void main(String[] args) {
+        System.out.println("this is main branch");
+    }
 }
 
