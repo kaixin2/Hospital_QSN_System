@@ -6,8 +6,8 @@ package com.example.Mr_X.model;
  * @description
  * @date 2022-05-26 16:38
  */
-public class TestPushFromBranchMrx {
+public class TestPushFromBranchMr_G {
     public static void main(String[] args) {
-        System.out.println("this branch is Mr_x");
+        System.out.println("this branch is Mr_G");
     }
 }
