@@ -9,6 +9,6 @@ package com.example.Mr_X.model;
 public class TestPush {
 
     public static void main(String[] args) {
-        System.out.println("this a testing for main branch");
+        System.out.println("this a testing for main branch and change on github ");
     }
 }
