@@ -8,6 +8,6 @@ package com.example.Mr_X.model;
  */
 public class TestPushFromBranchMr_G {
     public static void main(String[] args) {
-        System.out.println("this branch is Mr_G");
+        System.out.println("this branch is Mr_G,i change the code at github");
     }
 }
