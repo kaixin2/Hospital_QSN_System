@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Hospital</title>
+</head>
+<body>
+<div class="head">
+    <div class="head-left"><img src="img/hospital2.png"><h1>Hospital QSN System</h1></div>
+    <div class="head-right">
+        <div>
+        <ul>
+            <li><a href=""><img src="img/exit2.png">Exit</a></li>
+            <li><a href="patientHome.jsp"><img src="img/home.png">Welcome to the Hospital System</a></li>
+        </ul>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="menu">
+        <div class="menu-header"><h2>Menu</h2></div>
+        <div class="left_1">
+            <a href="registrationServlet"><div style="width: 200px"><div style="width: 100px"><img src="img/registration2.png"></div><div class="menu-text">Registration</div></div></a>
+        </div>
+        <div class="left_1">
+            <a href="patientInformationServlet"><div style="width: 200px"><div style="width: 100px"><img src="img/patient2.png"></div><div class="menu-text">Register Information</div></div></a>
+        </div>
+        <div class="left_1">
+            <a href="payInformationServlet"><div style="width: 200px"><div style="width: 100px"><img src="img/pay2.png"></div><div class="menu-text">Pay Information</div></div></a>
+        </div>
+    </div>
