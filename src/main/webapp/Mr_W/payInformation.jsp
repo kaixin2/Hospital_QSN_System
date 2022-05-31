@@ -6,9 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script type="text/javascript" language=javascript src="registration.js"></script>
 <jsp:include page="inc/header.inc"></jsp:include>
 <div class="content">
-    <table border="1" cellspacing="0" style="margin-left:400px;width: 780px;">
+
+    <table class="table" border="1" cellspacing="0" align="center">
         <tr style="font-size: 25px">
             <th colspan="6">费用记录</th>
         </tr>
@@ -20,31 +23,55 @@
             <th>是否支付</th>
             <th>选择</th>
         </tr>
-        <tr>
-            <td>001</td>
-            <td>就诊</td>
-            <td>00001</td>
-            <td>30</td>
-            <th>未支付</th>
-            <th><input type="button" value="&#x270e;" onclick="copy('001')"></th>
-        </tr>
-        <tr>
-            <td>002</td>
-            <td>取药</td>
-            <td>30002</td>
-            <td>100</td>
-            <th>已支付</th>
-            <th><input type="button" value="&#x270e;" onclick="copy('002')"></th>
-        </tr>
+  		<c:forEach var="expense" items="${expense}" varStatus="var">
+        	<tr>
+            	<td><c:out value="${expense.id}"/></td>
+            	<td><c:out value="${expense.goal}"/></td>
+            	<td><c:out value="${expense.payID}"/></td>
+            	<td><c:out value="${expense.cost}"/></td>
+            	<th><c:out value="${expense.sign}"/></th>
+            	<th><input type="button" value="&#x270e;" onclick="copy('<c:out value="${expense.payID}"/>','<c:out value="${expense.goal}"/>')"></th>
+        	</tr>
+       </c:forEach>
+        
     </table>
-    <form style="margin-left:400px;width: 780px; font-size: 25px">
-        费用单：<input type="text" id="pay" readonly="true"><br>
-        <input type="submit" value="支付">
+    <form action="pay" style="margin-left:400px;width: 780px; font-size: 25px" onsubmit="return reCheck()">
+        <input type="submit" class="botton" value="支付">
+        <span id="information" class="error"></span>
     </form>
+
+    <c:if test="${param.id==1}">
+	<table class="table" border="1" cellspacing="0" align="center">
+	<tr>
+		<th>ID</th>
+		<th>医生名字</th>
+		<th>医科</th>
+		<th>费用</th>
+	</tr>
+	<tr>
+		<td><c:out value="${expenseDetail.id}"/></td>
+		<td><c:out value="${expenseDetail.doctor}"/></td>
+		<td><c:out value="${expenseDetail.course}"/></td>	
+		<td><c:out value="${expenseDetail.costs}"/></td>	
+	</tr>
+	</table>
+	</c:if>
+	
+	<c:if test="${param.id==2}">
+	<table class="table" border="1" cellspacing="0" align="center">
+	<tr>
+		<th>ID</th>
+		<th>药名</th>
+		<th>数量</th>
+		<th>费用</th>
+	</tr>
+	<tr>
+		<td><c:out value="${expenseDetail.id}"/></td>
+		<td><c:out value="${expenseDetail.drug.name}"/></td>
+		<td><c:out value="${expenseDetail.num}"/></td>	
+		<td><c:out value="${expenseDetail.cost}"/></td>	
+	</tr>
+	</table>
+	</c:if>
 </div>
-<script>
-    function copy(id){
-        document.getElementById('pay').value=id;
-    }
-</script>
 <jsp:include page="inc/footer.inc"></jsp:include>

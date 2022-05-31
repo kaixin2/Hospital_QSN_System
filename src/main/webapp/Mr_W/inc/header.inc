@@ -11,7 +11,7 @@
         <div>
         <ul>
             <li><a href=""><img src="img/exit2.png">Exit</a></li>
-            <li><a href="patientHome.jsp"><img src="img/home.png">Welcome to the Hospital System</a></li>
+            <li><a href="welcome"><img src="img/home.png">Welcome to the Hospital System</a></li>
         </ul>
         </div>
     </div>
@@ -20,12 +20,12 @@
     <div class="menu">
         <div class="menu-header"><h2>Menu</h2></div>
         <div class="left_1">
-            <a href="registration.jsp"><div style="width: 200px"><div style="width: 100px"><img src="img/registration2.png"></div><div class="menu-text">Registration</div></div></a>
+            <a href="registration"><div style="width: 200px"><div style="width: 100px"><img src="img/registration2.png"></div><div class="menu-text">Registration</div></div></a>
         </div>
         <div class="left_1">
-            <a href="registrationInformation.jsp"><div style="width: 200px"><div style="width: 100px"><img src="img/patient2.png"></div><div class="menu-text">Register Information</div></div></a>
+            <a href="registrationInformation"><div style="width: 200px"><div style="width: 100px"><img src="img/patient2.png"></div><div class="menu-text">Register Information</div></div></a>
         </div>
         <div class="left_1">
-            <a href="payInformation.jsp"><div style="width: 200px"><div style="width: 100px"><img src="img/pay2.png"></div><div class="menu-text">Pay Information</div></div></a>
+            <a href="payInformation"><div style="width: 200px"><div style="width: 100px"><img src="img/pay2.png"></div><div class="menu-text">Pay Information</div></div></a>
         </div>
     </div>

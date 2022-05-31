@@ -121,3 +121,22 @@ li{
 .error{
     color: red;
 }
+
+.laydate-time-list{
+	padding-bottom:0;
+	overflow:hidden
+}
+ .laydate-time-list>li{
+ 	width:50%!important;
+ }
+ .laydate-time-list>li:last-child { 
+ 	display: none;
+ }
+.layer-date{
+	width:10px;
+}
+ .table{
+ 	margin-left:400px;
+ 	width: 780px;
+ }
+ 

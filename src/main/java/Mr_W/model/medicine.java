@@ -4,8 +4,17 @@ import Mr_W.model.drug;
 public class medicine {
     String id;
     drug drug;
+    double cost;
     int num;
 
+    public void setCost(Double cost) {
+		this.cost=cost;
+	}
+    
+    public double getCost() {
+		return cost;
+	}
+    
     public String getId() {
         return id;
     }

@@ -3,8 +3,26 @@ package Mr_W.model;
 public class expense {
     String id;
     String payID;
-    char sign;
+    String goal;
+    double cost;
+    String sign;
 
+    public void setGoal(String goal) {
+    	this.goal=goal;
+    }
+    
+    public String getGoal() {
+		return goal;
+	}
+    
+    public void SetCost(double cost) {
+		this.cost=cost;
+	}
+    
+    public double getCost() {
+		return cost;
+	}
+    
     public String getId() {
         return id;
     }
@@ -21,11 +39,11 @@ public class expense {
         this.payID = payID;
     }
 
-    public char getSign() {
+    public String getSign() {
         return sign;
     }
 
-    public void setSign(char sign) {
+    public void setSign(String sign) {
         this.sign = sign;
     }
 }

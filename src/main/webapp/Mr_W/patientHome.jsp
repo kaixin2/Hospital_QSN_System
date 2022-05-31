@@ -7,18 +7,8 @@
 --%>
 <%@ page contentType="text/html; charset=UTF-8" language="java"
          pageEncoding="utf-8"%>
-<%@page import="Mr_W.model.patient" %>
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-    patient patient=new patient();
-    patient.setId("123");
-    patient.setName("456");
-    patient.setSex("男");
-    patient.setAddress("江西省南昌市南昌航空大学");
-    patient.setTelephone("12345678910");
-    session.setAttribute("login",patient);
-%>
 <jsp:include page="inc/header.inc"></jsp:include>
     <div class="content">
         <div class="content-top">
