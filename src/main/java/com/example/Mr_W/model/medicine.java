@@ -1,5 +1,4 @@
-package Mr_W.model;
-import Mr_W.model.drug;
+package com.example.Mr_W.model;
 
 public class medicine {
     String id;

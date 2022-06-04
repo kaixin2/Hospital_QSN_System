@@ -1,14 +1,12 @@
-package Mr_W.controller;
+package com.example.Mr_W.controller;
 
-import Mr_W.model.doctor;
-import Mr_W.model.patient;
+import com.example.Mr_W.model.doctor;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;

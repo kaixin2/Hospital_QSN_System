@@ -1,6 +1,6 @@
-package Mr_W.db;
+package com.example.Mr_W.db;
 
-import Mr_W.model.registration;
+import com.example.Mr_W.model.registration;
 
 import java.util.List;
 

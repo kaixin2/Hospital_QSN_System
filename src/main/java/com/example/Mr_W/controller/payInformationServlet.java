@@ -1,4 +1,4 @@
-package Mr_W.controller;
+package com.example.Mr_W.controller;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Mr_W.model.expense;
+import com.example.Mr_W.model.expense;
 
 import java.io.IOException;
 import java.util.ArrayList;

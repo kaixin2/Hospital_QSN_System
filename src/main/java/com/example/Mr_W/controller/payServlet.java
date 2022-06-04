@@ -1,4 +1,4 @@
-package Mr_W.controller;
+package com.example.Mr_W.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

@@ -1,6 +1,6 @@
-package Mr_W.controller;
+package com.example.Mr_W.controller;
 
-import Mr_W.model.patient;
+import com.example.Mr_W.model.patient;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

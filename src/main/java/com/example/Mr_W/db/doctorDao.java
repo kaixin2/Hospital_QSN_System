@@ -1,4 +1,4 @@
-package Mr_W.db;
+package com.example.Mr_W.db;
 
 import java.sql.*;
 

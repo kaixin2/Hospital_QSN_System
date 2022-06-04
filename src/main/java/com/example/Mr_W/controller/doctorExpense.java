@@ -1,4 +1,4 @@
-package Mr_W.controller;
+package com.example.Mr_W.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,20 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Mr_W.model.drug;
-import Mr_W.model.medicine;
+import com.example.Mr_W.model.registration;
 
 /**
- * Servlet implementation class drugExpense
+ * Servlet implementation class docrorexpense
  */
-@WebServlet("/drugExpense")
-public class drugExpense extends HttpServlet {
+@WebServlet("/doctorExpense")
+public class doctorExpense extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public drugExpense() {
+    public doctorExpense() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,15 +30,13 @@ public class drugExpense extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String id=request.getParameter("id");
-		medicine medicine=new medicine();
-		medicine.setId(id);
-		drug drug=new drug();
-		drug.setName("ÂÞºìÃ¹ËØ");
-		medicine.setDrug(drug);
-		medicine.setCost(100.0);
-		medicine.setNum(2);
-		request.setAttribute("expenseDetail", medicine);
-		request.getRequestDispatcher("/payInformation?id=2").forward(request, response);
+		registration registration=new registration();
+		registration.setId(id);
+		registration.setDoctor("ï¿½ï¿½ï¿½ï¿½");
+		registration.setCourse("ï¿½Ô¿ï¿½");
+		registration.setCosts(30);
+		request.setAttribute("expenseDetail", registration);
+		request.getRequestDispatcher("/payInformation?id=1").forward(request, response);
 	}
 
 	/**

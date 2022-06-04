@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="Mr_W.model.doctor,java.util.*" %>
+<%@page import="com.example.Mr_W.model.doctor,java.util.*" %>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" language=javascript src="laydate.js"></script>
 <script type="text/javascript" language=javascript src="registration.js"></script>

@@ -1,4 +1,4 @@
-package Mr_W.controller;
+package com.example.Mr_W.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,20 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Mr_W.model.doctor;
-import Mr_W.model.registration;
-
 /**
- * Servlet implementation class docrorexpense
+ * Servlet implementation class revocationServlet
  */
-@WebServlet("/doctorExpense")
-public class doctorExpense extends HttpServlet {
+@WebServlet("/revocation")
+public class revocationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public doctorExpense() {
+    public revocationServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,14 +27,7 @@ public class doctorExpense extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String id=request.getParameter("id");
-		registration registration=new registration();
-		registration.setId(id);
-		registration.setDoctor("ÍõÎå");
-		registration.setCourse("ÄÔ¿Æ");
-		registration.setCosts(30);
-		request.setAttribute("expenseDetail", registration);
-		request.getRequestDispatcher("/payInformation?id=1").forward(request, response);
+		request.getRequestDispatcher("/registrationInformation").forward(request, response);
 	}
 
 	/**

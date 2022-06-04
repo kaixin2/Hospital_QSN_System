@@ -1,4 +1,4 @@
-package Mr_W.controller;
+package com.example.Mr_W.controller;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import Mr_W.model.registration;
+import com.example.Mr_W.model.registration;
 
 /**
  * Servlet implementation class ReservationServlet
@@ -25,19 +25,19 @@ public class patientInformationServlet extends HttpServlet {
         // TODO Auto-generated method stub
     	registration information=new registration();
     	information.setId("0000001");
-    	information.setDoctor("ÍõÎå");
-    	information.setListID("¾ÍÕï");
-    	information.setpType("ÆÕÍ¨");
+    	information.setDoctor("ï¿½ï¿½ï¿½ï¿½");
+    	information.setListID("ï¿½ï¿½ï¿½ï¿½");
+    	information.setpType("ï¿½ï¿½Í¨");
     	information.setpTime("2022-05-31");
-    	information.setSign("Î´Íê³É");
+    	information.setSign("Î´ï¿½ï¿½ï¿½");
     	information.setCosts(10);
     	registration information1=new registration();
     	information1.setId("0000001");
-    	information1.setDoctor("ÍõÎå");
-    	information1.setListID("¾ÍÕï");
-    	information1.setpType("¼±Õï");
+    	information1.setDoctor("ï¿½ï¿½ï¿½ï¿½");
+    	information1.setListID("ï¿½ï¿½ï¿½ï¿½");
+    	information1.setpType("ï¿½ï¿½ï¿½ï¿½");
     	information1.setpTime("2022-05-29");
-    	information1.setSign("Íê³É");
+    	information1.setSign("ï¿½ï¿½ï¿½");
     	information1.setCosts(10);
     	List<registration> list=new ArrayList<registration>();
     	list.add(information);
@@ -45,7 +45,7 @@ public class patientInformationServlet extends HttpServlet {
   
     	request.setAttribute("registrationInfor", list);
     	request.setAttribute("sum", 1);
-    	request.setAttribute("queue", "Î´µ½");
+    	request.setAttribute("queue", "Î´ï¿½ï¿½");
         request.getRequestDispatcher("/registrationInformation.jsp").forward(request, response);
     }
 
