@@ -6,8 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<script type="text/javascript" language=javascript src="registration.js"></script>
+<script type="text/javascript" language=javascript src="Mr_W/registration.js"></script>
 <jsp:include page="inc/header.inc"></jsp:include>
 <div class="content">
     <table class="table" border="1" cellspacing="0">
@@ -24,6 +25,7 @@
             <th>是否完成</th>
             <th>操作</th>
         </tr>
+        <jsp:useBean id="registrationInfor" scope="request" type="java.util.List<com.example.Mr_W.model.registration>"/>
         <c:forEach var="registration" items="${registrationInfor}" varStatus="var">
         	<tr style="font-size: 15px">
             	<td><c:out value="${registration.id}"/></td>
@@ -38,7 +40,8 @@
         </c:forEach>
     </table>
     <form style="margin-left:400px; font-size: 25px">
-    当前人数：<c:out value="${sum}"/>
+    当前人数：<jsp:useBean id="sum" scope="request" type="java.lang.Integer"/>
+    <c:out value="${sum}"/>
     是否叫到：<c:out value="${queue}"/><br>
     <input type="button" onclick="check()" value="检查">
     <input type="submit" value="签到">

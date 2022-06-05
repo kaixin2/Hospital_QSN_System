@@ -32,11 +32,11 @@ public class doctorExpense extends HttpServlet {
 		String id=request.getParameter("id");
 		registration registration=new registration();
 		registration.setId(id);
-		registration.setDoctor("����");
-		registration.setCourse("�Կ�");
+		registration.setDoctor("张三");
+		registration.setCourse("脑科");
 		registration.setCosts(30);
 		request.setAttribute("expenseDetail", registration);
-		request.getRequestDispatcher("/payInformation?id=1").forward(request, response);
+		request.getRequestDispatcher("payInformation?id=1").forward(request, response);
 	}
 
 	/**

@@ -1,4 +1,4 @@
-package Mr_W.model;
+package com.example.Mr_W.model;
 
 public class doctor {
     String id;

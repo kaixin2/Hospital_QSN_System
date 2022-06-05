@@ -1,7 +1,7 @@
 laydate.render({
   	elem: '#test1',
   	trigger: "click",
-	type: 'datetime',
+	type: 'date',
 	min:getNowFormatDate(),
 	format: 'yyyy-MM-dd',
 });

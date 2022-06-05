@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="inc/header.inc"></jsp:include>
 <div class="content">
 <table border="1" cellspacing="0" style="margin-left:400px;width: 780px; font-size: 25px">

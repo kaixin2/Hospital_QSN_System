@@ -25,16 +25,14 @@ public class welcomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
 
-        HttpSession session= request.getSession();
         patient patient=new patient();
         patient.setId("0001");
-        patient.setName("ÕÅÈı");
-        patient.setSex("ÄĞ");
-        patient.setAddress("½­Î÷Ê¡ÄÏ²ıÊĞÄÏ²ıº½¿Õ´óÑ§");
+        patient.setName("å¼ ä¸‰");
+        patient.setSex("ç”·");
+        patient.setAddress("æ±Ÿè¥¿çœå—æ˜Œå¸‚");
         patient.setTelephone("12345678910");
-        response.setCharacterEncoding("utf-8");
         request.setAttribute("login",patient);
-        request.getRequestDispatcher("/patientHome.jsp").forward(request, response);
+        request.getRequestDispatcher("Mr_W/patientHome.jsp").forward(request, response);
     }
 
     /**

@@ -25,19 +25,19 @@ public class patientInformationServlet extends HttpServlet {
         // TODO Auto-generated method stub
     	registration information=new registration();
     	information.setId("0000001");
-    	information.setDoctor("����");
-    	information.setListID("����");
-    	information.setpType("��ͨ");
+    	information.setDoctor("张三");
+    	information.setListID("就诊");
+    	information.setpType("普通");
     	information.setpTime("2022-05-31");
-    	information.setSign("δ���");
+    	information.setSign("未完成");
     	information.setCosts(10);
     	registration information1=new registration();
-    	information1.setId("0000001");
-    	information1.setDoctor("����");
-    	information1.setListID("����");
-    	information1.setpType("����");
+    	information1.setId("0000002");
+    	information1.setDoctor("李四");
+    	information1.setListID("Take medicine");
+    	information1.setpType("ordinary");
     	information1.setpTime("2022-05-29");
-    	information1.setSign("���");
+    	information1.setSign("完成");
     	information1.setCosts(10);
     	List<registration> list=new ArrayList<registration>();
     	list.add(information);
@@ -45,8 +45,8 @@ public class patientInformationServlet extends HttpServlet {
   
     	request.setAttribute("registrationInfor", list);
     	request.setAttribute("sum", 1);
-    	request.setAttribute("queue", "δ��");
-        request.getRequestDispatcher("/registrationInformation.jsp").forward(request, response);
+    	request.setAttribute("queue", "no");
+        request.getRequestDispatcher("Mr_W/registrationInformation.jsp").forward(request, response);
     }
 
     /**

@@ -1,8 +1,11 @@
 package com.example.Mr_W.model;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+
 public class patient {
     String id;
-    String  name;
+    String name;
     String sex;
     String telephone;
     String address;

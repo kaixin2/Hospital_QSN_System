@@ -30,16 +30,16 @@ public class registrationServlet extends HttpServlet {
         doctor1.setId("00000001");
         doctor4.setId("00000004");
 
-        doctor1.setCourses("Éñ¾­¿Æ");
-        doctor4.setCourses("ÄÚ¿Æ");
-        doctor1.setName("ÕÅÈı");
-        doctor4.setName("ÁõÁù");
+        doctor1.setCourses("è„‘ç§‘");
+        doctor4.setCourses("ç¥ç»ç§‘");
+        doctor1.setName("å¼ ä¸‰");
+        doctor4.setName("æå››");
         List<doctor> list=new ArrayList<>();
         list.add(doctor1);
         list.add(doctor4);
         request.setAttribute("doctor",list);
         request.setAttribute("doctors",list);
-        request.getRequestDispatcher("/registration.jsp").forward(request, response);
+        request.getRequestDispatcher("Mr_W/registration.jsp").forward(request, response);
     }
 
     /**

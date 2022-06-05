@@ -34,12 +34,12 @@ public class drugExpense extends HttpServlet {
 		medicine medicine=new medicine();
 		medicine.setId(id);
 		drug drug=new drug();
-		drug.setName("�޺�ù��");
+		drug.setName("罗红霉素");
 		medicine.setDrug(drug);
 		medicine.setCost(100.0);
 		medicine.setNum(2);
 		request.setAttribute("expenseDetail", medicine);
-		request.getRequestDispatcher("/payInformation?id=2").forward(request, response);
+		request.getRequestDispatcher("payInformation?id=2").forward(request, response);
 	}
 
 	/**

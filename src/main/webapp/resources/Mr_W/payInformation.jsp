@@ -6,8 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<script type="text/javascript" language=javascript src="registration.js"></script>
+<script type="text/javascript" language=javascript src="Mr_W/registration.js"></script>
 <jsp:include page="inc/header.inc"></jsp:include>
 <div class="content">
 

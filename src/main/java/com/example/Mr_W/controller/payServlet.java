@@ -27,7 +27,7 @@ public class payServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/payInformation").forward(request, response);
+		request.getRequestDispatcher("Mr_W/payInformation").forward(request, response);
 	}
 
 	/**
