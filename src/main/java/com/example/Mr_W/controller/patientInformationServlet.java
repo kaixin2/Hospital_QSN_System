@@ -5,11 +5,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-import com.example.Mr_W.model.registration;
+
+import com.example.Mr_W.db.registrationDao;
 
 /**
  * Servlet implementation class ReservationServlet
@@ -23,30 +23,26 @@ public class patientInformationServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
-    	registration information=new registration();
-    	information.setId("0000001");
-    	information.setDoctor("张三");
-    	information.setListID("就诊");
-    	information.setpType("普通");
-    	information.setpTime("2022-05-31");
-    	information.setSign("未完成");
-    	information.setCosts(10);
-    	registration information1=new registration();
-    	information1.setId("0000002");
-    	information1.setDoctor("李四");
-    	information1.setListID("Take medicine");
-    	information1.setpType("ordinary");
-    	information1.setpTime("2022-05-29");
-    	information1.setSign("完成");
-    	information1.setCosts(10);
-    	List<registration> list=new ArrayList<registration>();
-    	list.add(information);
-    	list.add(information1);
-  
-    	request.setAttribute("registrationInfor", list);
-    	request.setAttribute("sum", 1);
-    	request.setAttribute("queue", "no");
-        request.getRequestDispatcher("Mr_W/registrationInformation.jsp").forward(request, response);
+    	registrationDao dao=new registrationDao();
+        HttpSession session=request.getSession();
+    	request.setAttribute("registrationInfor",dao.getALLRegistrationInformationByPatientId(session.getAttribute("login").toString()) );
+        int sum=0;
+        String id=dao.getRegistrationByPatientId(session.getAttribute("login").toString());
+        if(dao.getQueueById(id)!=null) {
+            for (String s : dao.getQueueById(id)) {
+                if (s.equals(id))
+                    sum++;
+            }
+        }
+    	request.setAttribute("sum", sum);
+        String temp="";
+        if(session.getAttribute("queue")!=null)
+            temp=session.getAttribute("queue").toString();
+        if(temp.equals(session.getAttribute("login").toString()))
+            request.setAttribute("queue","是");
+        else
+    	    request.setAttribute("queue", "否");
+        request.getRequestDispatcher("resources/Mr_W/registrationInformation.jsp").forward(request, response);
     }
 
     /**

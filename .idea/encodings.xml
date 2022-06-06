@@ -5,6 +5,7 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/example/Mr_W/controller/payInformationServlet.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/example/Mr_W/controller/registrationServlet.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/example/Mr_W/controller/welcomeServlet.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

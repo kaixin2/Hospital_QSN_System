@@ -11,6 +11,16 @@ public class patient {
     String address;
     String idNo;
 
+    public patient(){}
+    public patient(String id, String name, String sex, String telephone, String address, String idNo){
+        this.id=id;
+        this.name=name;
+        this.sex=sex;
+        this.telephone=telephone;
+        this.address=address;
+        this.idNo=idNo;
+    }
+
     public void setId(String id) {
         this.id = id;
     }

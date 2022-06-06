@@ -2,7 +2,7 @@ package com.example.Mr_W.model;
 
 public class registration {
     String id;
-    String doctor;
+    doctor doctor;
     String course;
     String listID;
     String pType;
@@ -26,11 +26,11 @@ public class registration {
         this.id = id;
     }
 
-    public String getDoctor() {
+    public doctor getDoctor() {
         return doctor;
     }
 
-    public void setDoctor(String doctor) {
+    public void setDoctor(doctor doctor) {
         this.doctor = doctor;
     }
 

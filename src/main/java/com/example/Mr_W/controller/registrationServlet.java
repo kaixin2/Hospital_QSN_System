@@ -1,5 +1,6 @@
 package com.example.Mr_W.controller;
 
+import com.example.Mr_W.db.doctorDao;
 import com.example.Mr_W.model.doctor;
 
 import javax.servlet.ServletException;
@@ -25,21 +26,9 @@ public class registrationServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
-    	doctor doctor1=new doctor();
-        doctor doctor4=new doctor();
-        doctor1.setId("00000001");
-        doctor4.setId("00000004");
-
-        doctor1.setCourses("脑科");
-        doctor4.setCourses("神经科");
-        doctor1.setName("张三");
-        doctor4.setName("李四");
-        List<doctor> list=new ArrayList<>();
-        list.add(doctor1);
-        list.add(doctor4);
-        request.setAttribute("doctor",list);
-        request.setAttribute("doctors",list);
-        request.getRequestDispatcher("Mr_W/registration.jsp").forward(request, response);
+        doctorDao doctorDao=new doctorDao();
+        request.setAttribute("doctor",doctorDao.getAllDoctor());
+        request.getRequestDispatcher("resources/Mr_W/registration.jsp").forward(request, response);
     }
 
     /**

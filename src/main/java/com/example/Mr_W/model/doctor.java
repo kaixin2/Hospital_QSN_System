@@ -7,7 +7,15 @@ public class doctor {
     String courses;
     String room;
     String time;
-
+    public doctor(){}
+    public doctor(String id,String name, String telephone, String courses, String room, String time){
+        this.courses=courses;
+        this.id=id;
+        this.name=name;
+        this.room=room;
+        this.time=time;
+        this.telephone=telephone;
+    }
     public String getId() {
         return id;
     }

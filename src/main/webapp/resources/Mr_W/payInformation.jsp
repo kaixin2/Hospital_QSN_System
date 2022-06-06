@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<script type="text/javascript" language=javascript src="Mr_W/registration.js"></script>
+<script type="text/javascript" language=javascript src="resources/Mr_W/registration.js"></script>
 <jsp:include page="inc/header.inc"></jsp:include>
 <div class="content">
 
@@ -24,6 +24,7 @@
             <th>是否支付</th>
             <th>选择</th>
         </tr>
+  		<jsp:useBean id="expense" scope="request" type="java.util.List<com.example.Mr_W.model.expense>"/>
   		<c:forEach var="expense" items="${expense}" varStatus="var">
         	<tr>
             	<td><c:out value="${expense.id}"/></td>
@@ -36,8 +37,9 @@
        </c:forEach>
         
     </table>
-    <form action="pay" style="margin-left:400px;width: 780px; font-size: 25px" onsubmit="return reCheck()">
-        <input type="submit" class="botton" value="支付">
+    <form action="Mr_W/pay" style="margin-left:400px;width: 780px; font-size: 25px" onsubmit="return reCheck()">
+        <input type="hidden" name="id" id="id">
+		<input type="submit" class="botton" value="支付">
         <span id="information" class="error"></span>
     </form>
 
@@ -47,13 +49,15 @@
 		<th>ID</th>
 		<th>医生名字</th>
 		<th>医科</th>
+		<th>诊室</th>
 		<th>费用</th>
 	</tr>
 	<tr>
 		<td><c:out value="${expenseDetail.id}"/></td>
-		<td><c:out value="${expenseDetail.doctor}"/></td>
-		<td><c:out value="${expenseDetail.course}"/></td>	
-		<td><c:out value="${expenseDetail.costs}"/></td>	
+		<td><c:out value="${expenseDetail.doctor.name}"/></td>
+		<td><c:out value="${expenseDetail.doctor.courses}"/></td>
+		<td><c:out value="${expenseDetail.doctor.room}"/></td>
+		<td><c:out value="${expenseDetail.costs}"/></td>
 	</tr>
 	</table>
 	</c:if>

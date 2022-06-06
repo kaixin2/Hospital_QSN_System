@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.example.Mr_W.db.registrationDao;
 import com.example.Mr_W.model.registration;
 
 /**
@@ -30,12 +31,8 @@ public class doctorExpense extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String id=request.getParameter("id");
-		registration registration=new registration();
-		registration.setId(id);
-		registration.setDoctor("张三");
-		registration.setCourse("脑科");
-		registration.setCosts(30);
-		request.setAttribute("expenseDetail", registration);
+		registrationDao registrationDao=new registrationDao();
+		request.setAttribute("expenseDetail", registrationDao.getRegistrationInformationById(id));
 		request.getRequestDispatcher("payInformation?id=1").forward(request, response);
 	}
 

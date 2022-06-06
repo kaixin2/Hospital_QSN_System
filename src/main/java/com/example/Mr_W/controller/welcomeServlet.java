@@ -1,5 +1,6 @@
 package com.example.Mr_W.controller;
 
+import com.example.Mr_W.db.patientDao;
 import com.example.Mr_W.model.patient;
 
 import javax.servlet.ServletException;
@@ -24,15 +25,11 @@ public class welcomeServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
-
-        patient patient=new patient();
-        patient.setId("0001");
-        patient.setName("张三");
-        patient.setSex("男");
-        patient.setAddress("江西省南昌市");
-        patient.setTelephone("12345678910");
-        request.setAttribute("login",patient);
-        request.getRequestDispatcher("Mr_W/patientHome.jsp").forward(request, response);
+        patientDao patientDao=new patientDao();
+        request.setAttribute("login",patientDao.getPatientByAccount("123"));
+        HttpSession session= request.getSession();
+        session.setAttribute("login",patientDao.getPatientIdByAccount("123"));
+        request.getRequestDispatcher("resources/Mr_W/patientHome.jsp").forward(request, response);
     }
 
     /**

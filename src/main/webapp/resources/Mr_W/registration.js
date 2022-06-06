@@ -28,17 +28,44 @@ function getNowFormatDate() {
 			+ date.getMinutes() + seperator2 + date.getSeconds();
 	return currentdate;
 }
-    
-    
-function registationvalidate(){
+
+function getQueryVariable(variable)
+{
+	var query = window.location.search.substring(1);
+	var vars = query.split("&");
+	for (var i=0;i<vars.length;i++) {
+		var pair = vars[i].split("=");
+		if(pair[0] == variable){return pair[1];}
+	}
+	return(false);
+}
+function registrationValidate(){
+	var input_type1=document.getElementsByName('type1')[0];
+	var input_type2=document.getElementsByName('type1')[1];
 	var input_data=document.getElementsByName('date')[0];	
-	var input_time=document.getElementsByName('time')[0];	
-	var input_searchType=document.getElementsByName('searchType')[0];
-	if(input_data.value=='' || input_time.value=='' || input_searchType.value==0){
+	var input_time=document.getElementsByName('time')[0];
+	if(input_type1.checked){
+		var input_searchType=document.getElementsByName('searchType')[0];
+		if(input_data.value=='' || input_time.value=='' || input_searchType.value==0){
+			document.getElementById('id').innerText='error...';
+			return false;
+		}else {
+			window.location.href='addDoctors?type1='+getQueryVariable("type1")+
+				'type2='+getQueryVariable("type2")+
+				'date='+getQueryVariable("date")+
+				'time='+getQueryVariable("time")+
+				'searchType'+getQueryVariable("searchType");
+			return true;
+		}
+	}else if(input_type2.checked){
+				var input_listId=document.getElementsByName('listId')[0];
+		if(input_data.value=='' || input_time.value=='' || input_listId.value==''){
 			document.getElementById('id').innerText='error...';
 			return false;
 		}else
-		return true;
+			return true;
+	}else return true;
+
 }
 
 function check(){
@@ -47,6 +74,7 @@ function check(){
 
 
  function copy(id,type){
+	document.getElementById("id").value=id;
 		if(type != '取药'){
 			window.location.href='doctorExpense?id='+id;
 		}   else{

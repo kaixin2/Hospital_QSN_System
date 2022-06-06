@@ -11,16 +11,15 @@
 <%@page import="com.example.Mr_W.model.doctor,java.util.*" %>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" language=javascript src="Mr_W/laydate.js"></script>
-<script type="text/javascript" language=javascript src="Mr_W/registration.js"></script>
+<script type="text/javascript" language=javascript src="resources/Mr_W/registration.js"></script>
 
 <jsp:include page="inc/header.inc"></jsp:include>
 
 <div class="content" style="width:780px; height: 730px">
-    <form action="addDoctor" style="padding-top:100px;padding-left:400px;width: 780px; font-size: 25px" onsubmit="return registationvalidate()">
+    <form action="addDoctors" style="padding-top:100px;padding-left:400px;width: 780px; font-size: 25px" onsubmit="return registrationValidate()">
             <div style="font-size: 30px;font-weight: bolder;padding-left: 150px">挂号</div><br>
         挂号类型：<input type="radio" name="type1" value="1" checked="checked">就诊
-        <input type="radio" name="type1" value="2">预约
-        <input type="radio" name="type1" value="3">取药<br>
+        <input type="radio" name="type1" value="2">取药|取药单号：<input type="text" name="listId"><br>
         患者类型：<input type="radio" name="type2" value="1" checked="checked">普通
         <input type="radio" name="type2" value="2">急诊<br>
         选择时间：<br>

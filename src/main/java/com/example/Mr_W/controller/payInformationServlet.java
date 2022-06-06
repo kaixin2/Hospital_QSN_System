@@ -5,7 +5,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.example.Mr_W.db.expenseDao;
 import com.example.Mr_W.model.expense;
 
 import java.io.IOException;
@@ -29,24 +31,10 @@ public class payInformationServlet extends HttpServlet {
 		String id=request.getParameter("id");
 		if(id==null)
 			id="";
-		expense expense=new expense();
-		expense.setId("001");
-		expense.SetCost(30);
-		expense.setGoal("就诊");
-		expense.setPayID("00001");
-		expense.setSign("未完成");
-		expense expense1=new expense();
-		expense1.setId("002");
-		expense1.SetCost(100);
-		expense1.setGoal("取药");
-		expense1.setPayID("30001");
-		expense1.setSign("完成");
-		List<expense> list=new ArrayList<expense>();
-		list.add(expense);
-		list.add(expense1);
-		request.setAttribute("expense",list);
-
-		request.getRequestDispatcher("Mr_W/payInformation.jsp?id="+id).forward(request, response);
+		HttpSession session=request.getSession();
+		expenseDao expenseDao=new expenseDao();
+		request.setAttribute("expense",expenseDao.getExpenseById((String) session.getAttribute("login")));
+		request.getRequestDispatcher("resources/Mr_W/payInformation.jsp?id="+id).forward(request, response);
 	}
 
 	/**
