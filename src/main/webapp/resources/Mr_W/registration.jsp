@@ -10,7 +10,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="com.example.Mr_W.model.doctor,java.util.*" %>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script type="text/javascript" language=javascript src="Mr_W/laydate.js"></script>
+<script type="text/javascript" language=javascript src="resources/Mr_W/laydate.js"></script>
 <script type="text/javascript" language=javascript src="resources/Mr_W/registration.js"></script>
 
 <jsp:include page="inc/header.inc"></jsp:include>

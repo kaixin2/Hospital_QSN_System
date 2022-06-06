@@ -33,7 +33,7 @@ public class doctorExpense extends HttpServlet {
 		String id=request.getParameter("id");
 		registrationDao registrationDao=new registrationDao();
 		request.setAttribute("expenseDetail", registrationDao.getRegistrationInformationById(id));
-		request.getRequestDispatcher("payInformation?id=1").forward(request, response);
+		request.getRequestDispatcher("payInformation?id=1&&payId="+id).forward(request, response);
 	}
 
 	/**

@@ -27,8 +27,16 @@
     </tr>
     </c:forEach>
 </table>
-    <form style="margin-left:400px;width: 780px; font-size: 25px">
+    <form action="addRegistration" style="margin-left:400px;width: 780px; font-size: 25px">
         填写医生id：<br>
+        <jsp:useBean id="type1" scope="request" type="java.lang.String"/>
+        <jsp:useBean id="type2" scope="request" type="java.lang.String"/>
+        <jsp:useBean id="listId" scope="request" type="java.lang.String"/>
+        <jsp:useBean id="date" scope="request" type="java.lang.String"/>
+        <input type="hidden" name="type1" value="<c:out value="${type1}"/>">
+        <input type="hidden" name="type2" value="<c:out value="${type2}"/>">
+        <input type="hidden" name="listId" value="<c:out value="${listId}"/> ">
+        <input type="hidden" name="date" value="<c:out value="${date}"/>">
         <input type="text" name="doctor"><span id="doctor_error" class="error"></span><br>
         <input type="submit" value="提交"><br>
     </form>
@@ -37,7 +45,7 @@
     var frm=document.querySelector('form');
     frm.onsubmit = function(){
         var input_account=document.getElementsByName('doctor')[0];
-        if(/^\d{3}$/.test(input_account.value))
+        if(/^\d{4}$/.test(input_account.value))
             return true;
         else{
             document.getElementById('doctor_error').innerText='format error...';

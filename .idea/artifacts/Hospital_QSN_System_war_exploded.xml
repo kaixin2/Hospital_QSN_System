@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Hospital_QSN_System:war exploded">
+    <output-path>$PROJECT_DIR$/target/artifacts/Hospital_QSN_System_war_exploded</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Hospital_QSN_System" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/jstl-1.2.jar" />
+          <element id="library" level="project" name="h2-2.1.210" />
+          <element id="file-copy" path="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/h2-2.1.210.jar" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="Hospital_QSN_System/web/Web" />
+    </root>
+  </artifact>
+</component>

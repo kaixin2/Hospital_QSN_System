@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<script type="text/javascript" language=javascript src="Mr_W/registration.js"></script>
+<script type="text/javascript" language=javascript src="resources/Mr_W/registration.js"></script>
 <jsp:include page="inc/header.inc"></jsp:include>
 <div class="content">
     <table class="table" border="1" cellspacing="0">
@@ -39,7 +39,7 @@
             	<th><c:out value="${registration.pTime}"/></th>
             	<td><c:out value="${registration.costs}"/></td>
             	<td><c:out value="${registration.sign}"/></td>
-                <c:if test="${registration.sign=='已完成'}">
+                <c:if test="${registration.sign!='未完成'}">
                     <td>无</td>
                 </c:if>
                 <c:if test="${registration.sign=='未完成'}">

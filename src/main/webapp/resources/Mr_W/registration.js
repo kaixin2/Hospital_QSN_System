@@ -74,7 +74,6 @@ function check(){
 
 
  function copy(id,type){
-	document.getElementById("id").value=id;
 		if(type != '取药'){
 			window.location.href='doctorExpense?id='+id;
 		}   else{
@@ -84,7 +83,7 @@ function check(){
     
     
 function revocation(id){
-	window.location.href='revocation?id='+id;
+	window.location.href='cancelRegistration?id='+id;
 }
 
 function getQueryString(name) {

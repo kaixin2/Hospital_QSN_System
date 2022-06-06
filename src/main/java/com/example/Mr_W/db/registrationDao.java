@@ -45,6 +45,10 @@ public class registrationDao {
 
     public List<registration> getALLRegistrationInformationByPatientId(String id){
         List<registration> list=null;
+        int[] i=new int[100];
+        int n=-1,j=0;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String date= sdf.format(System.currentTimeMillis());
         try {
             Class.forName("org.h2.Driver");
             Connection conn= DriverManager.getConnection("jdbc:h2:~/System","sa","");
@@ -62,25 +66,33 @@ public class registrationDao {
                     list=new ArrayList<>();
                     bl=false;
                 }
-                doctor doctor=new doctor();
-                doctor.setName(rs.getString(2));
-                doctor.setCourses(rs.getString(3));
-                doctor.setRoom(rs.getString(4));
-                registration registration=new registration();
-                registration.setDoctor(doctor);
-                registration.setId(rs.getString(1));
-                registration.setpTime(rs.getString(5));
-                registration.setCosts(rs.getDouble(6));
-                if(rs.getString(7)==null)
-                    registration.setListID("诊断");
-                else registration.setListID("取药");
-                if(rs.getString(8).equals("0"))
-                    registration.setSign("未完成");
-                else registration.setSign("已完成");
-                if(rs.getString(9).equals("1"))
-                    registration.setpType("普通");
-                else registration.setpType("急诊");
-                list.add(registration);
+                n++;
+                if(rs.getString(5).split(" ")[0].equals(date)) {
+                    i[j]=n;
+                    j++;
+                }
+                    doctor doctor = new doctor();
+                    doctor.setName(rs.getString(2));
+                    doctor.setCourses(rs.getString(3));
+                    doctor.setRoom(rs.getString(4));
+                    registration registration = new registration();
+                    registration.setDoctor(doctor);
+                    registration.setId(rs.getString(1));
+                    registration.setpTime(rs.getString(5));
+                    registration.setCosts(rs.getDouble(6));
+                    if (rs.getString(7) == null)
+                        registration.setListID("诊断");
+                    else registration.setListID("取药");
+                    if (rs.getString(8).equals("0"))
+                        registration.setSign("未完成");
+                    else if (rs.getString(8).equals("1"))
+                        registration.setSign("已完成");
+                    else
+                        registration.setSign("已取消");
+                    if (rs.getString(9).equals("1"))
+                        registration.setpType("普通");
+                    else registration.setpType("急诊");
+                    list.add(registration);
             }
             rs.close();
             stmt.close();
@@ -91,6 +103,12 @@ public class registrationDao {
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+        }
+        for(int k=0;k<j;k++){
+            registration temp= list.get(i[k]);
+            for(int r=i[k];r>k;r--)
+                list.set(r,list.get(r-1));
+            list.set(k, temp);
         }
         return list;
     }
@@ -152,5 +170,76 @@ public class registrationDao {
             e.printStackTrace();
         }
         return id;
+    }
+    public String getLastRegistrationId(){
+        String id=null;
+        try {
+            Class.forName("org.h2.Driver");
+            Connection conn= DriverManager.getConnection("jdbc:h2:~/System","sa","");
+            Statement stmt=conn.createStatement();
+            ResultSet rs=stmt.executeQuery("select id from REGISTRATIONFORM");
+            while (rs.next()) {
+                id = rs.getString(1);
+            }
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return id;
+    }
+    public void insertRegistration(String id,String listId,String type,String doctorId,String date,double costs,String sign){
+        try {
+            Class.forName("org.h2.Driver");
+            Connection conn= DriverManager.getConnection("jdbc:h2:~/System","sa","");
+            PreparedStatement stmt=conn.prepareStatement("insert into REGISTRATIONFORM values(?,?,?,?,?,?,?)");
+            stmt.setString(1,id);
+            stmt.setString(2,doctorId);
+            if(" ".equals(listId)) {
+                System.out.println(1);
+                stmt.setObject(3, null);
+            }else {
+                System.out.println(2);
+                stmt.setString(3, listId);
+            }
+            stmt.setString(3,listId);
+            stmt.setString(4,type);
+            stmt.setString(5,date);
+            stmt.setDouble(6,costs);
+            stmt.setString(7,sign);
+
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+    public void updateCancelSign(String id){
+        try {
+            Class.forName("org.h2.Driver");
+            Connection conn= DriverManager.getConnection("jdbc:h2:~/System","sa","");
+            PreparedStatement stmt=conn.prepareStatement("update REGISTRATIONFORM set sign='2' where id=?");
+            stmt.setString(1,id);
+
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }

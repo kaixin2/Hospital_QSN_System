@@ -37,13 +37,19 @@
        </c:forEach>
         
     </table>
-    <form action="Mr_W/pay" style="margin-left:400px;width: 780px; font-size: 25px" onsubmit="return reCheck()">
-        <input type="hidden" name="id" id="id">
+    <form action="pay" style="margin-left:400px;width: 780px; font-size: 25px" onsubmit="return reCheck()">
+		<jsp:useBean id="payId" scope="request" class="java.lang.String"/>
+        <input type="hidden" name="id" value="<c:out value="${payId}"/> ">
 		<input type="submit" class="botton" value="支付">
-        <span id="information" class="error"></span>
+		<jsp:useBean id="error" scope="request" class="java.lang.String"/>
+        <span id="information" class="error">
+		<c:if test="${not empty error}">
+			已支付或者已取消
+		</c:if>
+		</span>
     </form>
 
-    <c:if test="${param.id==1}">
+    <c:if test="${param.id=='1'}">
 	<table class="table" border="1" cellspacing="0" align="center">
 	<tr>
 		<th>ID</th>
@@ -62,7 +68,7 @@
 	</table>
 	</c:if>
 	
-	<c:if test="${param.id==2}">
+	<c:if test="${param.id=='2'}">
 	<table class="table" border="1" cellspacing="0" align="center">
 	<tr>
 		<th>ID</th>

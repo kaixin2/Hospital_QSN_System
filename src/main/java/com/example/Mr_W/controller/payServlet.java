@@ -30,9 +30,13 @@ public class payServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String id=request.getParameter("id");
+		String error="";
 		expenseDao dao=new expenseDao();
-		dao.updatePayByPayId(id);
-		request.getRequestDispatcher("Mr_W/payInformation").forward(request, response);
+		if(dao.isPay(id))
+			dao.updatePayByPayId(id);
+		else
+			error="已支付或者已取消";
+		request.getRequestDispatcher("payInformation?error="+error).forward(request, response);
 	}
 
 	/**
