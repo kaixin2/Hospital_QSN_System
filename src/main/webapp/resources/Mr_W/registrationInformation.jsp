@@ -48,7 +48,7 @@
         	</tr>
         </c:forEach>
     </table>
-    <form style="margin-left:400px; font-size: 25px">
+    <form action="signIn" style="margin-left:400px; font-size: 25px">
     当前人数：<jsp:useBean id="sum" scope="request" type="java.lang.Integer"/>
     <c:out value="${sum}"/>
     是否叫到：<jsp:useBean id="queue" scope="request" type="java.lang.String"/>

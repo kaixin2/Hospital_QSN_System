@@ -10,6 +10,8 @@ import java.util.Calendar;
 import java.util.List;
 
 public class registrationDao {
+
+
     public registration getRegistrationInformationById(String id){
         registration registration=null;
         try {
@@ -231,6 +233,24 @@ public class registrationDao {
             PreparedStatement stmt=conn.prepareStatement("update REGISTRATIONFORM set sign='2' where id=?");
             stmt.setString(1,id);
 
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    public void updateFinishSign(String id){
+        try {
+            Class.forName("org.h2.Driver");
+            Connection conn= DriverManager.getConnection("jdbc:h2:~/System","sa","");
+            PreparedStatement stmt=conn.prepareStatement("update REGISTRATIONFORM set sign='1' where id=?");
+            stmt.setString(1,id);
             stmt.executeUpdate();
             stmt.close();
             conn.close();
