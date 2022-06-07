@@ -46,8 +46,13 @@ public class payInformationServlet extends HttpServlet {
 
 		HttpSession session=request.getSession();
 		expenseDao expenseDao=new expenseDao();
+		String sign="";
+		if(expenseDao.isPay(payId)){
+			sign="0";
+		}else sign="1";
+			request.setAttribute("sign",sign);
 		request.setAttribute("expense",expenseDao.getExpenseById(session.getAttribute("login").toString()));
-		request.getRequestDispatcher("resources/Mr_W/payInformation.jsp?id="+id).forward(request, response);
+		request.getRequestDispatcher("resources/Mr_W/payInformation.jsp?id="+id+"&&sign="+sign).forward(request, response);
 	}
 
 	/**

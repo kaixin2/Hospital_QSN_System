@@ -83,6 +83,7 @@ function check(){
     
     
 function revocation(id){
+	alert("取消成功！！")
 	window.location.href='cancelRegistration?id='+id;
 }
 
@@ -94,10 +95,28 @@ function getQueryString(name) {
 
 function reCheck(){
 	var id=getQueryString('id');
+	var sign=document.getElementsByName('sign')[0].value;
 	if(id==null){
 		document.getElementById('information').innerText='未选择';
 		return false;
 	}else{
+		if(sign=='0 ') {
+			alert("支付成功！！")
+			return true;
+		}else {
+			document.getElementById('information').innerText = '已支付或者已取消';
+			return false;
+		}
+	}
+}
+
+function signIn(){
+	var signIn=document.getElementById('signIn').innerText;
+	if(signIn=='是'){
+		alert("签到成功！！");
 		return true;
+	} else{
+		alert("未到叫号！！");
+		return false;
 	}
 }

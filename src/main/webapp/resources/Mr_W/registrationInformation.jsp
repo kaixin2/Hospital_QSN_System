@@ -48,11 +48,11 @@
         	</tr>
         </c:forEach>
     </table>
-    <form action="signIn" style="margin-left:400px; font-size: 25px">
+    <form action="signIn" style="margin-left:400px; font-size: 25px" onsubmit="return signIn()">
     当前人数：<jsp:useBean id="sum" scope="request" type="java.lang.Integer"/>
     <c:out value="${sum}"/>
     是否叫到：<jsp:useBean id="queue" scope="request" type="java.lang.String"/>
-    <c:out value="${queue}"/><br>
+        <span id="signIn"><c:out value="${queue}"/></span><br>
     <input type="button" onclick="check()" value="检查">
     <input type="submit" value="签到">
     </form>

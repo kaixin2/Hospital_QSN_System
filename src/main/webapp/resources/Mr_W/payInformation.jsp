@@ -39,7 +39,9 @@
     </table>
     <form action="pay" style="margin-left:400px;width: 780px; font-size: 25px" onsubmit="return reCheck()">
 		<jsp:useBean id="payId" scope="request" class="java.lang.String"/>
+		<jsp:useBean id="sign" scope="request" class="java.lang.String"/>
         <input type="hidden" name="id" value="<c:out value="${payId}"/> ">
+		<input type="hidden" name="sign" value="<c:out value="${sign}"/> ">
 		<input type="submit" class="botton" value="支付">
 		<jsp:useBean id="error" scope="request" class="java.lang.String"/>
         <span id="information" class="error">

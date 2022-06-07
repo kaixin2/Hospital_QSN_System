@@ -30,14 +30,15 @@ public class patientInformationServlet extends HttpServlet {
         String id=dao.getRegistrationByPatientId(session.getAttribute("login").toString());
         if(dao.getQueueById(id)!=null) {
             for (String s : dao.getQueueById(id)) {
-                if (s.equals(id))
+                if (!s.equals(id))
                     sum++;
+                else break;
             }
         }
     	request.setAttribute("sum", sum);
         String temp="";
         if(session.getAttribute("queue")!=null)
-            temp=session.getAttribute("queue").toString();
+            temp=dao.getPatientByRegistrationId(session.getAttribute("queue").toString());
         if(temp.equals(session.getAttribute("login").toString()))
             request.setAttribute("queue","是");
         else

@@ -11,6 +11,30 @@ import java.util.List;
 
 public class registrationDao {
 
+    public String getPatientByRegistrationId(String id){
+        String patientId="";
+        try {
+            Class.forName("org.h2.Driver");
+            Connection conn= DriverManager.getConnection("jdbc:h2:~/System","sa","");
+            Statement stmt=conn.createStatement();
+            ResultSet rs=stmt.executeQuery("select PATIENTINFORMATION.patientId\n" +
+                    "from REGISTRATIONFORM,PATIENTINFORMATION\n" +
+                    "where REGISTRATIONFORM.ID=PATIENTINFORMATION.REGISTRATIONID and REGISTRATIONFORM.ID='"+id+"'");
+            if (rs.next()) {
+                patientId=rs.getString(1);
+            }
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return patientId;
+    }
 
     public registration getRegistrationInformationById(String id){
         registration registration=null;
@@ -60,7 +84,6 @@ public class registrationDao {
                     "where PATIENTINFORMATION.REGISTRATIONID=REGISTRATIONFORM.ID " +
                     "and REGISTRATIONFORM.DOCTORID=DOCTOR.ID " +
                     "and PATIENTINFORMATION.PATIENTID='"+id+"'"+
-                    "and REGISTRATIONFORM.sign !='3'"+
                     "order by REGISTRATIONFORM.PTIME,REGISTRATIONFORM.sign");
             boolean bl=true;
             while (rs.next()) {
@@ -89,6 +112,8 @@ public class registrationDao {
                         registration.setSign("未完成");
                     else if (rs.getString(8).equals("1"))
                         registration.setSign("已完成");
+                    else if (rs.getString(8).equals("3"))
+                        registration.setSign("未签到");
                     else
                         registration.setSign("已取消");
                     if (rs.getString(9).equals("1"))
@@ -156,7 +181,8 @@ public class registrationDao {
                     "where REGISTRATIONFORM.ID in (select REGISTRATIONID from PATIENTINFORMATION where PATIENTID='"+patientId+"') and SIGN='0'\n" +
                     "order by PTIME");
             while (rs.next()) {
-                if(rs.getString(2).equals(date)) {
+                String[] s=rs.getString(2).split(" ");
+                if(s[0].equals(date)) {
                     id = rs.getString(1);
                     break;
                 }

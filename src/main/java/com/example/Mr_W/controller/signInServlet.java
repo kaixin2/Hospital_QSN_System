@@ -35,6 +35,7 @@ public class signInServlet extends HttpServlet {
 
         if(session.getAttribute("queue")!=null) {
             dao.updateFinishSign(session.getAttribute("queue").toString());
+            session.removeAttribute("queue");
         }
         request.getRequestDispatcher("registrationInformation").forward(request, response);
     }
