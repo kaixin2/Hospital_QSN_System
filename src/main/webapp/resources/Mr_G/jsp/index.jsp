@@ -23,6 +23,7 @@
       <div class="head-left"><img src="img/hospital2.png"><h1>Hospital QSN System</h1></div>
 
   </div>
+  <div>
     <nav role="user">
       <ul>
         <li>欢迎管理员</li>
@@ -46,12 +47,10 @@
     <nav role="option">
       <ul>
         <li>导航列表</li>
-
-        <li><a href="patient.jsp" target="main">用户管理</a></li>
-        <li><a href="doctor.jsp" target="main">医生管理</a></li>
-        <li><a href="booking.jsp" target="main">预约管理</a></li>
-        <li><a href="bookingReport.jsp" target="main">预约报表</a></li>
-        <li><a href="log.jsp" target="main">操作记录</a></li>
+        <li><a href="patientServlet?temp=qurey" target="main">用户管理</a></li>
+        <li><a href="DoctorServlet?temp=qurey" target="main">医生管理</a></li>
+        <li><a href="BookingServlet?temp=qurey" target="main">预约管理</a></li>
+        <li><a href="LogServlet?temp=qurey" target="main">操作记录</a></li>
       </ul>
     </nav>
   </aside>

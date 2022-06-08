@@ -1,6 +1,7 @@
 package com.example.Mr_G.model;
 
 public class Log {
+
     String ID;
     String PatientID;
     String DoctorID;

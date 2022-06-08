@@ -26,7 +26,19 @@ public class LogServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
-        this.find(request, response);	}
+        String temp = request.getParameter("temp");
+        if("qurey".equals(temp))
+        {
+            this.find(request, response);
+        }
+        else if("idqurey".equals(temp))
+        {
+
+            this.find1(request, response);
+            System.out.println(3);
+        }
+
+    }
     private void find(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         Log infor = new Log();
         LogDao dao = new LogDao();
@@ -35,6 +47,19 @@ public class LogServlet extends HttpServlet {
         String path = "/log.jsp";
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher requestDistpatcher = request.getRequestDispatcher(path);
+        requestDistpatcher.forward(request, response);
+    }
+    private void find1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
+        LogDao dao1 = new LogDao();
+        String messL1=new String(request.getParameter("searchL1").trim().getBytes("ISO-8859-1"),"utf-8");
+        Log listSear = dao1.check(messL1);
+        System.out.println("l");
+        System.out.println(messL1);
+        request.setAttribute("SearInfor", listSear);
+        String path1 = "/header_log.jsp";
+        response.setContentType("text/html;charset=UTF-8");
+        RequestDispatcher requestDistpatcher = request.getRequestDispatcher(path1);
         requestDistpatcher.forward(request, response);
     }
 

@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Hospital_QSN_System:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/Hospital_QSN_System_war_exploded</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Hospital_QSN_System" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="Hospital_QSN_System/web/Web" />
+    </root>
+  </artifact>
+</component>

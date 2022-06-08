@@ -26,7 +26,25 @@ public class BookingServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
-        this.find(request, response);
+        String temp = request.getParameter("temp");
+        if("qurey".equals(temp))
+        {
+            this.find(request, response);
+        }
+        else if("idqurey".equals(temp))
+        {
+
+            this.findid(request, response);
+            System.out.println(3);
+        }
+        else if("timequrey".equals(temp))
+        {
+            System.out.println(1);
+            this.findtime(request, response);
+            System.out.println(2);
+
+        }
+
     }
     private void find(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         Booking infor = new Booking();
@@ -36,6 +54,33 @@ public class BookingServlet extends HttpServlet {
         String path = "/booking.jsp";
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher requestDistpatcher = request.getRequestDispatcher(path);
+        requestDistpatcher.forward(request, response);
+    }
+    private void findid(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
+        BookingDao dao = new BookingDao();
+        String messB=request.getParameter("searchB");
+        Booking listSear = dao.checkId(messB);
+        request.setAttribute("IdInfor", listSear);
+
+        String path1 = "/header_booking.jsp";
+        response.setContentType("text/html;charset=UTF-8");
+        RequestDispatcher requestDistpatcher = request.getRequestDispatcher(path1);
+        requestDistpatcher.forward(request, response);
+    }
+    private void findtime(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
+        BookingDao dao = new BookingDao();
+        String messT1=request.getParameter("searchT1");
+        System.out.println(messT1);
+        String messT2=request.getParameter("searchT2");
+
+        List<Booking> listTime = dao.checkTime(messT1,messT2);
+
+        request.setAttribute("TimeInfor", listTime);
+        String path1 = "/header_booking.jsp";
+        response.setContentType("text/html;charset=UTF-8");
+        RequestDispatcher requestDistpatcher = request.getRequestDispatcher(path1);
         requestDistpatcher.forward(request, response);
     }
     /**

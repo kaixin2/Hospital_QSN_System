@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.example.Mr_G.model.Doctor" %><%--
   Created by IntelliJ IDEA.
   User: 86183
   Date: 2022-06-04
@@ -21,77 +21,80 @@
         width: 70px;
         height: 40px;
     }
+    .modiform{
+        text-align:center;
+    }
 </style>
+<%
+    request.setCharacterEncoding("utf-8");
+    Doctor listSear=(Doctor) request.getAttribute("SearInfor");
+
+%>
 <div >
-
-    <form>
-
-        <input type="text" class="text-input" placeholder="输入姓名/联系电话进行查询">
-        <input type="submit" class="button" value="搜索" >
+    <form action="DoctorServlet?temp=telqurey" method="post">
+        <input type="text" class="text-input" placeholder="联系电话进行查询" name="searchD1" id="searchD1" >
+        <input type="submit" class="button" value="搜索" onclick="validateForm()">
         <input type="button" class="button" value="新建" onclick="add1()">
     </form>
-
 </div>
-<div id="windowD1" class="window_css" style="display: none">
 
+
+
+<%
+    if(listSear!=null){
+%>
+<form class="modiform" action="DoctorServlet?temp=updatequrey" method="post">
+    编 号 :<input type="text" value="<%=listSear.getID() %>" name="idD1"><br>
+    姓 名 :<input type="text" value="<%=listSear.getName() %>" name="nameD1"><br>
+    医 科 :<input type="text" value="<%=listSear.getCourse() %>" name="typeD1"><br>
+    诊 室 :<input type="text" value="<%=listSear.getRoom() %>" name="roomD1"><br>
+    工作时间:<input type="text" value="<%=listSear.getTime() %>" name="timeD1"><br>
+    联系方式:<input type="text" value="<%=listSear.getTelephone() %>" name="phoneD1"><br>
+    <input type="submit" value="修改" >
+    <%
+        }
+    %>
+</form>
+
+
+
+<div id="windowD1" class="window_css" style="display:none">
     新增医生信息
-
     <hr>
-    <form>
-        编 号 :<input type="text" value="" id="idD1"><br>
-        姓 名 :<input type="text" value="" id="nameD1"><br>
-        医 科 :<input type="text" value="" id="typeD1"><br>
-        诊 室 :<input type="text" value="" id="roomD1"><br>
-        工作时间:<input type="text" value="" id="timeD1"><br>
-        联系方式:<input type="text" value="" id="phoneD1"><br>
+    <form  class="modiform" action="DoctorServlet?temp=addqurey" method="post">
+        编 号 :<input type="text" value="" name="idD1"><br>
+        姓 名 :<input type="text" value="" name="nameD1"><br>
+        医 科 :<input type="text" value="" name="typeD1"><br>
+        诊 室 :<input type="text" value="" name="roomD1"><br>
+        工作时间:<input type="text" value="" name="timeD1"><br>
+        联系方式:<input type="text" value="" name="phoneD1"><br>
         <input type="submit" value="确定"  onclick="validateFormD1()">
-        <input type="submit" value="取消"  onclick="hideWindowD1()()">
     </form>
-
 </div>
+
+
+
 <!--出现悬浮窗口后,背景变暗-->
 <div id="shadowD1" class="shadow_css"></div>
 <br>
 <script>
-    function add1(){
+    function validateForm(){
 
+        var sear=document.getElementById("searchD1").value;
+        if(sear.length!=11){
+            alert("电话输入不合法");
+        }
+        return false;
+    }
+    function add1(){
         /*悬浮窗口的显示,需要将display变成block*/
         document.getElementById("windowD1").style.display = "block";
         /*将背景变暗*/
         document.getElementById("shadowD1").style.display = "block";
-
-
     }
     function hideWindow1() {
         document.getElementById("windowD1").style.display = "none";
         document.getElementById("shadowD1").style.display = "none";
     }
-    function validateFormD1(){
 
-        var id=document.getElementById("idD1").value;
-        var name=document.getElementById("nameD1").value;
-
-        var phone=document.getElementById("phoneD1").value;
-
-        var room=document.getElementById("roomD1").value;
-        if(id.length!=4){
-            alert("编号输入不合法")
-
-
-        }
-        if(name.length==0){
-            alert("姓名输入不能为空")
-        }
-        if(phone.length!=11){
-            alert("电话输入不合法")
-
-
-        }
-
-        if(room.length!=8){
-            alert("诊室输入不合法")
-
-
-        }
-    }
 </script>

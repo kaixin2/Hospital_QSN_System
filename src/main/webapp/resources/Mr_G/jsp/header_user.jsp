@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.example.Mr_G.model.Patient" %><%--
   Created by IntelliJ IDEA.
   User: 86183
   Date: 2022-06-02
@@ -21,31 +21,60 @@
         width: 70px;
         height: 40px;
     }
+    .modiform{
+        text-align:center;
+    }
 </style>
+<%
+    request.setCharacterEncoding("utf-8");
+    Patient listSear=(Patient) request.getAttribute("SearInfor");
+
+%>
 <div >
 
-    <form>
+    <form action="PatientServlet?temp=telqurey" method="post">
 
-        <input type="text" class="text-input" placeholder="输入姓名/联系电话进行查询">
-        <input type="submit" class="button" value="搜索" >
+        <input type="text" class="text-input" placeholder="联系电话进行查询" name="searchP1" id="searchP1" >
+        <input type="submit" class="button" value="搜索" onclick="validateForm1()">
         <input type="button" class="button" value="新建" onclick="add()">
+
     </form>
 
 </div>
-<div id="window" class="window_css" style="display: none">
+
+<%
+    if(listSear!=null){
+
+%>
+
+<form class="modiform" action="PatientServlet?temp=updatequrey" method="post">
+    编 号 :<input type="text" value="<%=listSear.getId()%>" name="id1"><br>
+    姓 名 :<input type="text" value="<%=listSear.getName() %>" name="name1"><br>
+    性 别 :<input type="text" value="<%=listSear.getSex()%>" name="sex1"><br>
+    电 话 :<input type="text" value="<%=listSear.getTelephone() %>" name="phone1"><br>
+    地 址 :<input type="text" value="<%=listSear.getAddress() %>" name="address1"><br>
+    身份证号:<input type="text" value=" <%=listSear.getIdno() %>" name="idno1"><br>
+    <input type="submit" value="修改"  >
+</form>
+
+<%}
+
+%>
+
+<div id="window" class="window_css" style="display:none">
 
     新增用户信息
 
     <hr>
-    <form>
-        编 号 :<input type="text" value="" id="id"><br>
-        姓 名 :<input type="text" value="" id="name"><br>
-        性 别 :<input type="text" value="" id="sex"><br>
-        电 话 :<input type="text" value="" id="phone"><br>
-        地 址 :<input type="text" value="" id="address"><br>
-        身份证号:<input type="text" value="" id="idno"><br>
-        <input type="submit" value="确定"  onclick="validateForm()">
-        <input type="submit" value="取消"  onclick="hideWindow()">
+    <form class="modiform" action="PatientServlet?temp=addqurey" method="post">
+        编 号 :<input type="text" value="" name="id"><br>
+        姓 名 :<input type="text" value="" name="name"><br>
+        性 别 :<input type="text" value="" name="sex"><br>
+        电 话 :<input type="text" value="" name="phone"><br>
+        地 址 :<input type="text" value="" name="address"><br>
+        身份证号:<input type="text" value="" name="idno"><br>
+        <input type="submit" value="确定" onclick="validateForm()">
+
     </form>
 
 </div>
@@ -53,56 +82,25 @@
 <div id="shadow" class="shadow_css"></div>
 <br>
 <script>
+    function validateForm1(){
+
+        var sear=document.getElementById("searchP1").value;
+        if(sear.length!=11){
+            alert("电话输入不合法")
+
+        }
+        return false;
+    }
     function add(){
 
         /*悬浮窗口的显示,需要将display变成block*/
         document.getElementById("window").style.display = "block";
         /*将背景变暗*/
         document.getElementById("shadow").style.display = "block";
-
-
     }
     function hideWindow() {
         document.getElementById("window").style.display = "none";
         document.getElementById("shadow").style.display = "none";
     }
-    function validateForm(){
-
-        var id=document.getElementById("id").value;
-        alert(id.length);
-        var name=document.getElementById("name").value;
-
-        var sex=document.getElementById("sex").value;
-
-        var phone=document.getElementById("phone").value;
-
-        var idno=document.getElementById("idno").value;
-
-
-        if(id.length!=4){
-            alert("编号输入不合法")
-
-        }
-
-        if(name.length==0){
-            alert("姓名输入不能为空")
-        }
-        if(sex!='男'&&sex!='女'){
-            alert("性别输入不合法")
-
-        }
-        if(phone.length!=11){
-            alert("电话输入不合法")
-
-
-        }
-        if(idno.length!=18){
-            alert("身份证输入不合法")
-
-        }
-
-
-    }
 
 </script>
-

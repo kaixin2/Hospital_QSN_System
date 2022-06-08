@@ -15,8 +15,6 @@
 <%
     request.setCharacterEncoding("utf-8");
     List<Booking> list=(List<Booking>)request.getAttribute("allInfor");
-    Booking booking=new Booking();
-
 
 %>
 <link rel="stylesheet" href="css/patient.css">
