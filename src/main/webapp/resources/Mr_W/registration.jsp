@@ -28,7 +28,7 @@
         选择科室：<br>
         <select name="searchType" id="searchType">
             <option value="0" selected>请选择查询条件</option>
-            
+            <jsp:useBean id="doctor"  scope="request" type="java.util.List<com.example.Mr_W.model.doctor>"/>
             <c:forEach var="doctor" items="${doctor}" varStatus="var">
             	<option value="<c:out value="${doctor.courses}"/>"><c:out value="${doctor.courses}"/></option>
             </c:forEach>
