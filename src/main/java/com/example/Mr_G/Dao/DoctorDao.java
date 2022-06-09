@@ -59,7 +59,7 @@ public class DoctorDao {
     public Doctor check(String patientSear) {
         ResultSet rs = null;
         Statement stmt = null;
-        Doctor inf = new Doctor();
+        Doctor inf =null;
 
 
         try {
@@ -72,7 +72,8 @@ public class DoctorDao {
             stmt = this.connection.createStatement();
             rs = stmt.executeQuery(sql);
             while(rs.next()) {
-
+                Doctor newinf = new Doctor();
+                inf=newinf;
                 inf.setID(rs.getString(1));
                 inf.setName(rs.getString(2));
                 inf.setTelephone(rs.getString(3));
@@ -102,6 +103,44 @@ public class DoctorDao {
         return inf;
     }
 
+    public String checkExistTel(String patientSear) {
+        ResultSet rs = null;
+        Statement stmt = null;
+        String inf = null;
+
+        try {
+            this.connection = conn.getConnection();
+            if (this.connection == null) {
+                System.out.println("error");
+            }
+
+            String sql="select telephone from doctors where telephone = '"+patientSear+"'";
+
+            stmt = this.connection.createStatement();
+            rs = stmt.executeQuery(sql);
+            while(rs.next()) {
+
+                inf=rs.getString(1);
+
+            }
+
+            stmt.close();
+            this.connection.close();
+        } catch (SQLException var17) {
+            var17.printStackTrace();
+        } finally {
+            try {
+                if (this.connection != null && !this.connection.isClosed()) {
+                    this.connection.close();
+                }
+            } catch (SQLException var16) {
+                var16.printStackTrace();
+            }
+
+        }
+
+        return inf;
+    }
 
 
 
@@ -187,4 +226,5 @@ public class DoctorDao {
 
         return result1;
     }
+
 }

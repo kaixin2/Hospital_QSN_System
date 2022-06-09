@@ -7,6 +7,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet("/LogServlet")
@@ -50,12 +51,21 @@ public class LogServlet extends HttpServlet {
         requestDistpatcher.forward(request, response);
     }
     private void find1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-
+        response.setCharacterEncoding("utf-8");
+        request.setCharacterEncoding("utf-8");
+        PrintWriter out = response.getWriter();
         LogDao dao1 = new LogDao();
         String messL1=new String(request.getParameter("searchL1").trim().getBytes("ISO-8859-1"),"utf-8");
+        if(messL1.length()!=4) {
+            out.println("id输入不合法");
+            return;
+        }
         Log listSear = dao1.check(messL1);
-        System.out.println("l");
-        System.out.println(messL1);
+        if(listSear==null) {
+            out.println("该用户不存在");
+            return;
+        }
+
         request.setAttribute("SearInfor", listSear);
         String path1 = "/header_log.jsp";
         response.setContentType("text/html;charset=UTF-8");

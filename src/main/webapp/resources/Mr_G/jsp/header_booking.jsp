@@ -79,7 +79,7 @@
     <div class="type" id="doctorId" style="display: none;">
         <form action="BookingServlet?temp=idqurey" method="post">
             <input type="text" class="text-input" placeholder="请输入医生id进行查询" value="" id="BDid" name="searchB">
-            <input type="submit" class="button1" value="搜索" onclick="validdateFormBD()">
+            <input type="submit" class="button1" value="搜索" >
         </form>
     </div>
     <%
@@ -103,7 +103,7 @@
 
             开始时间：<input type="date" id="time1" value="" name="searchT1"/>
             结束时间：<input type="date"  id="time2" value="" name="searchT2"/>
-            <input type="submit" value="搜索" onclick="validdateFormBT()">
+            <input type="submit" value="搜索" >
 
         </form>
     </div>
@@ -144,9 +144,7 @@
 
     function changeForm(){
         var choice = document.getElementById("choice").value;
-
         var doc=document.querySelector("#doctorId");
-
         var time=document.querySelector("#Time");
         if(choice=="1"){
             doc.style.display="block"
@@ -162,21 +160,6 @@
             time.style.display="none"
         }
     }
-    function validdateFormBD(){
 
-        var id=document.getElementById("BDid").value;
-        if(id.length!=4)
-            alert("id输入不合法");
-
-        return false;
-    }
-    function validdateFormBT(){
-
-        var time1=document.getElementById("time1").value;
-        var time2=document.getElementById("time2").value;
-        if(time1==""||time2=="")
-            alert("请选择时间");
-        return false;
-    }
 
 </script>

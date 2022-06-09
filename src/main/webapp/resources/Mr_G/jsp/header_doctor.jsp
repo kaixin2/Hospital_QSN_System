@@ -33,7 +33,7 @@
 <div >
     <form action="DoctorServlet?temp=telqurey" method="post">
         <input type="text" class="text-input" placeholder="联系电话进行查询" name="searchD1" id="searchD1" >
-        <input type="submit" class="button" value="搜索" onclick="validateForm()">
+        <input type="submit" class="button" value="搜索" >
         <input type="button" class="button" value="新建" onclick="add1()">
     </form>
 </div>
@@ -44,7 +44,7 @@
     if(listSear!=null){
 %>
 <form class="modiform" action="DoctorServlet?temp=updatequrey" method="post">
-    编 号 :<input type="text" value="<%=listSear.getID() %>" name="idD1"><br>
+    编 号 :<input type="text" value="<%=listSear.getID() %>" name="idD1" readonly><br>
     姓 名 :<input type="text" value="<%=listSear.getName() %>" name="nameD1"><br>
     医 科 :<input type="text" value="<%=listSear.getCourse() %>" name="typeD1"><br>
     诊 室 :<input type="text" value="<%=listSear.getRoom() %>" name="roomD1"><br>
@@ -78,19 +78,15 @@
 <div id="shadowD1" class="shadow_css"></div>
 <br>
 <script>
-    function validateForm(){
 
-        var sear=document.getElementById("searchD1").value;
-        if(sear.length!=11){
-            alert("电话输入不合法");
-        }
-        return false;
-    }
     function add1(){
+
         /*悬浮窗口的显示,需要将display变成block*/
         document.getElementById("windowD1").style.display = "block";
         /*将背景变暗*/
         document.getElementById("shadowD1").style.display = "block";
+
+
     }
     function hideWindow1() {
         document.getElementById("windowD1").style.display = "none";

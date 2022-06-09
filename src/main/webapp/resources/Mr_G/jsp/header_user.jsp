@@ -48,7 +48,7 @@
 %>
 
 <form class="modiform" action="PatientServlet?temp=updatequrey" method="post">
-    编 号 :<input type="text" value="<%=listSear.getId()%>" name="id1"><br>
+    编 号 :<input type="text" value="<%=listSear.getId()%>" name="id1" readonly><br>
     姓 名 :<input type="text" value="<%=listSear.getName() %>" name="name1"><br>
     性 别 :<input type="text" value="<%=listSear.getSex()%>" name="sex1"><br>
     电 话 :<input type="text" value="<%=listSear.getTelephone() %>" name="phone1"><br>
@@ -82,15 +82,7 @@
 <div id="shadow" class="shadow_css"></div>
 <br>
 <script>
-    function validateForm1(){
 
-        var sear=document.getElementById("searchP1").value;
-        if(sear.length!=11){
-            alert("电话输入不合法")
-
-        }
-        return false;
-    }
     function add(){
 
         /*悬浮窗口的显示,需要将display变成block*/
@@ -102,5 +94,4 @@
         document.getElementById("window").style.display = "none";
         document.getElementById("shadow").style.display = "none";
     }
-
 </script>

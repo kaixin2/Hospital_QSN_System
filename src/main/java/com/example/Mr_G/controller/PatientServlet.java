@@ -20,23 +20,23 @@ public class PatientServlet extends HttpServlet {
         if("qurey".equals(temp))
         {
             this.find(request, response);
-            //System.out.println("you1");
+
         }
         else if("telqurey".equals(temp))
         {
-            //System.out.println("d");
+
             this.find1(request, response);
-            //System.out.println("y1");
+
         }
         else if("addqurey".equals(temp)){
 
             this.add(request, response);
-            //System.out.println("yu1");
+
         }
         else if("updatequrey".equals(temp)) {
 
             this.update(request, response);
-            //System.out.println("wuy1");
+
         }
 
     }
@@ -53,10 +53,22 @@ public class PatientServlet extends HttpServlet {
         requestDistpatcher.forward(request, response);
     }
     private void find1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-
+        response.setCharacterEncoding("utf-8");
+        request.setCharacterEncoding("utf-8");
+        PrintWriter out = response.getWriter();
         PatientDao dao1 = new PatientDao();
-        String messP1=request.getParameter("searchP1");
+        String messP1=request.getParameter("searchP1").trim();
+        if(messP1.length()!=11) {
+            out.println("电话输入不合法");
+            return ;
+        }
         Patient listSear = dao1.check(messP1);
+        if(listSear==null) {
+            out.println("该用户不存在");
+            return;
+        }
+
+
         request.setAttribute("SearInfor", listSear);
         System.out.println(listSear);
         String path1 = "/header_user.jsp";
@@ -67,6 +79,7 @@ public class PatientServlet extends HttpServlet {
     private boolean add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         response.setCharacterEncoding("utf-8");
         request.setCharacterEncoding("utf-8");
+        PrintWriter out = response.getWriter(); //获取内置对象 out
         Patient patient = new Patient();
         PatientDao dao = new PatientDao();
 
@@ -78,9 +91,13 @@ public class PatientServlet extends HttpServlet {
         String address=new String(request.getParameter("address").getBytes("ISO-8859-1"),"utf-8");
         String idno=new String(request.getParameter("idno").getBytes("ISO-8859-1"),"utf-8");
 
-        PrintWriter out = response.getWriter(); //获取内置对象 out
-        String messP1=request.getParameter("searchP1");
-        Patient listSear = dao.check(messP1);
+
+        String listSearExist = dao.checkExistTel(phone);
+
+        if(listSearExist.equals(idno)) {
+            out.println("该用户已存在");
+            return false;
+        }
 
         if(id.length()!=4){
             out.println("id输入不合法");

@@ -52,12 +52,22 @@ public class DoctorServlet extends HttpServlet {
         requestDistpatcher.forward(request, response);
     }
     private void find1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-
+        response.setCharacterEncoding("utf-8");
+        request.setCharacterEncoding("utf-8");
         DoctorDao dao1 = new DoctorDao();
+        PrintWriter out = response.getWriter();
+        String messD1=request.getParameter("searchD1").trim();
+        if(messD1.length()!=11) {
+            out.println("输入不合法");
+            return ;
+        }
 
-        String messD1=request.getParameter("searchD1");
         Doctor listSear = dao1.check(messD1);
-        System.out.println(listSear);
+        if(listSear==null) {
+            out.println("该用户不存在");
+            return;
+        }
+
         request.setAttribute("SearInfor", listSear);
 
         String path1 = "/header_doctor.jsp";
@@ -84,6 +94,14 @@ public class DoctorServlet extends HttpServlet {
         //System.out.println(time);
         String phone=new String(request.getParameter("phoneD1").getBytes("ISO-8859-1"),"utf-8");
         PrintWriter out = response.getWriter(); //获取内置对象 out
+        String listSearExist = dao.checkExistTel(phone);
+
+        if(listSearExist.equals(phone)) {
+            out.println("该用户已存在");
+            return false;
+        }
+
+
         if(id.length()!=4){
 
             out.println("id输入不合法");
@@ -107,8 +125,6 @@ public class DoctorServlet extends HttpServlet {
         doctor.setTime(time);
         doctor.setTelephone(phone);
 
-
-
         boolean result = false;
         result = dao.add(id,name,type,room,time,phone);
         if (result) {
@@ -116,10 +132,7 @@ public class DoctorServlet extends HttpServlet {
         } else {
             System.out.print("增加失败");
         }
-
         return result;
-
-
     }
 
 
@@ -130,15 +143,10 @@ public class DoctorServlet extends HttpServlet {
         Doctor doctor = new Doctor();
         DoctorDao dao = new DoctorDao();
         String id1=new String(request.getParameter("idD1").getBytes("ISO-8859-1"),"utf-8");
-
         String name1=new String(request.getParameter("nameD1").getBytes("ISO-8859-1"),"utf-8");
-
         String type1=new String(request.getParameter("typeD1").getBytes("ISO-8859-1"),"utf-8");
-
         String room1=new String(request.getParameter("roomD1").getBytes("ISO-8859-1"),"utf-8");
-
         String time1=new String(request.getParameter("timeD1").getBytes("ISO-8859-1"),"utf-8");
-
         String phone1=new String(request.getParameter("phoneD1").getBytes("ISO-8859-1"),"utf-8");
 
         if(id1.length()!=4){
@@ -147,8 +155,6 @@ public class DoctorServlet extends HttpServlet {
 
         }
 
-
-
         boolean result1 = false;
         result1 =dao.update(id1,name1,type1,room1,time1,phone1);
         if (result1) {
@@ -156,10 +162,7 @@ public class DoctorServlet extends HttpServlet {
         } else {
             System.out.print("修改失败");
         }
-
         return result1;
-
-
 
     }
     @Override

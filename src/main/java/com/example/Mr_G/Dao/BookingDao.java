@@ -11,6 +11,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class BookingDao {
     Connection connection =null;
     ConnBean conn = new ConnBean();
@@ -62,7 +63,7 @@ public class BookingDao {
     public Booking checkId(String searchB) {
         ResultSet rs = null;
         Statement stmt = null;
-        Booking infId = new Booking();
+        Booking infId = null;
 
         try {
             this.connection = conn.getConnection();
@@ -74,14 +75,10 @@ public class BookingDao {
 
             stmt = this.connection.createStatement();
             rs = stmt.executeQuery(sql);
-//            if(!rs.next()) {
-//            	 stmt.close();
-//                 this.connection.close();
-//            	return infId=null;
-//            }
 
             while(rs.next()) {
-
+                Booking newinfId = new Booking();
+                infId=newinfId;
                 infId.setId(rs.getString(1));
                 infId.setDoctorId(rs.getString(2));
                 infId.setListId(rs.getString(3));

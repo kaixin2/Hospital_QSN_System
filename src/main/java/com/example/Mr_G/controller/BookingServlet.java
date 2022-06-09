@@ -7,6 +7,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet("/BookingServlet")
@@ -57,26 +58,46 @@ public class BookingServlet extends HttpServlet {
         requestDistpatcher.forward(request, response);
     }
     private void findid(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-
+        response.setCharacterEncoding("utf-8");
+        request.setCharacterEncoding("utf-8");
+        PrintWriter out = response.getWriter();
         BookingDao dao = new BookingDao();
         String messB=request.getParameter("searchB");
+        if(messB.length()!=4) {
+            out.println("id输入不合法");
+            return;
+        }
         Booking listSear = dao.checkId(messB);
-        request.setAttribute("IdInfor", listSear);
 
+
+        if(listSear==null) {
+            out.println("该用户不存在");
+            return;
+        }
+        request.setAttribute("IdInfor", listSear);
         String path1 = "/header_booking.jsp";
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher requestDistpatcher = request.getRequestDispatcher(path1);
         requestDistpatcher.forward(request, response);
     }
     private void findtime(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-
+        response.setCharacterEncoding("utf-8");
+        request.setCharacterEncoding("utf-8");
+        PrintWriter out = response.getWriter();
         BookingDao dao = new BookingDao();
         String messT1=request.getParameter("searchT1");
-        System.out.println(messT1);
-        String messT2=request.getParameter("searchT2");
 
+        String messT2=request.getParameter("searchT2");
+        if(messT1==""||messT2=="") {
+            out.println("请选择时间");
+            return;
+        }
         List<Booking> listTime = dao.checkTime(messT1,messT2);
 
+        if(listTime.size()==0) {
+            out.println("该时间段内暂无预约记录！");
+            return;
+        }
         request.setAttribute("TimeInfor", listTime);
         String path1 = "/header_booking.jsp";
         response.setContentType("text/html;charset=UTF-8");

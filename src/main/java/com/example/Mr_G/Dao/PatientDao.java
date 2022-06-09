@@ -62,10 +62,7 @@ public class PatientDao {
     public Patient check(String patientSear) {
         ResultSet rs = null;
         Statement stmt = null;
-
         Patient inf = null;
-        //   System.out.print("查找之前的inf 值 :");
-        //   System.out.println(inf);
 
         try {
             this.connection = conn.getConnection();
@@ -77,11 +74,6 @@ public class PatientDao {
 
             stmt = this.connection.createStatement();
             rs = stmt.executeQuery(sql);
-//            if(rs.next()==false) {
-//            	 inf=null;
-//            }
-//
-//           else {
             while(rs.next()) {
 
                 Patient new_inf = new Patient();
@@ -96,13 +88,45 @@ public class PatientDao {
 
 
             }
-            // }
-            System.out.println("rs");
-            System.out.println(rs);
-            System.out.println("next()");
 
-            //   System.out.print("查找之后的inf 值 :");
-            //    System.out.println(inf);
+            stmt.close();
+            this.connection.close();
+        } catch (SQLException var17) {
+            var17.printStackTrace();
+        } finally {
+            try {
+                if (this.connection != null && !this.connection.isClosed()) {
+                    this.connection.close();
+                }
+            } catch (SQLException var16) {
+                var16.printStackTrace();
+            }
+
+        }
+
+        return inf;
+    }
+    public String checkExistTel(String patientSear) {
+        ResultSet rs = null;
+        Statement stmt = null;
+        String inf = null;
+
+        try {
+            this.connection = conn.getConnection();
+            if (this.connection == null) {
+                System.out.println("error");
+            }
+
+            String sql="select idno from patient where telephone = '"+patientSear+"'";
+
+            stmt = this.connection.createStatement();
+            rs = stmt.executeQuery(sql);
+            while(rs.next()) {
+
+                inf=rs.getString(1);
+
+            }
+
             stmt.close();
             this.connection.close();
         } catch (SQLException var17) {
