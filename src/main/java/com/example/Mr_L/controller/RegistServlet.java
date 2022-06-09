@@ -19,6 +19,7 @@ public class RegistServlet extends HttpServlet {
         HttpSession session=request.getSession();
         String id=(String) session.getAttribute("id");
         RegistDao registDao =new RegistDao();
+
         List<Regist> list2=registDao.findAll(id);
 
         request.setAttribute("list2",list2);

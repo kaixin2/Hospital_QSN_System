@@ -15,7 +15,7 @@ public class RegistDao {
             Connection conn= DriverManager.getConnection("jdbc:h2:d:/temp/System","sa","");
             Statement stmt=conn.createStatement();
 
-            ResultSet rs=stmt.executeQuery( "select *from REGISTRATIONFORM where doctorid='"+id+"'and (sign='0' or sign='2')");
+            ResultSet rs=stmt.executeQuery("select *from REGISTRATIONFORM where doctorid='"+id+"'and sign='0'");
             while(rs.next()){
                 Regist regist=new Regist();
                 regist.setDoctorid(rs.getString(2));
@@ -69,17 +69,16 @@ public class RegistDao {
         }
       return list;
     }
-
-    public static void main(String args[]) {
+    public List<Regist> findFinish(String id,String registid) {
+        List<Regist> list = new ArrayList<>();
         try {
             Class.forName("org.h2.Driver");
             Connection conn= DriverManager.getConnection("jdbc:h2:d:/temp/System","sa","");
             Statement stmt=conn.createStatement();
-          //  String id="1100002";
-           // String delete="delete from REGISTRATIONFORM where id='"+id+"'";
-            //stmt.executeUpdate(delete);
-
-            ResultSet rs=stmt.executeQuery( "select *from REGISTRATIONFORM ");
+            String update="update REGISTRATIONFORM set sign='1' where id='"+registid+"'and doctorid='"+id+"'";
+            //String delete="delete from REGISTRATIONFORM where id='"+id+"'";
+            stmt.executeUpdate(update);
+            ResultSet rs=stmt.executeQuery( "select *from REGISTRATIONFORM where doctorid='"+id+"'and sign='0'");
             while(rs.next()){
                 Regist regist=new Regist();
                 regist.setDoctorid(rs.getString(2));
@@ -90,7 +89,7 @@ public class RegistDao {
                 else
                     regist.setType("普通");
 
-               System.out.printf("%s,%s,%s\n",rs.getString(1),rs.getString(2),rs.getString(4));
+                list.add(regist);
             }
             rs.close();
             stmt.close();
@@ -100,6 +99,56 @@ public class RegistDao {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        return list;
+    }
+    public boolean Judge(String id,String registid){
+        boolean temp=false;
+        try {
+            Class.forName("org.h2.Driver");
+            Connection conn= DriverManager.getConnection("jdbc:h2:d:/temp/System","sa","");
+            Statement stmt=conn.createStatement();
+
+            ResultSet rs=stmt.executeQuery( "select *from REGISTRATIONFORM where doctorid='"+id+"'and sign='0'");
+            while(rs.next()){
+               if(registid.equals(rs.getString(1).trim()))
+                   temp=true;
+            }
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return temp;
+    }
+    public static void main(String args[]) {
+        String registid ="0000003";
+        String id = "2001";
+        boolean temp=false;
+        try {
+            Class.forName("org.h2.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:h2:d:/temp/System", "sa", "");
+            Statement stmt = conn.createStatement();
+
+            ResultSet rs = stmt.executeQuery("select *from REGISTRATIONFORM where doctorid='" + id + "'and sign='0'");
+            while (rs.next()) {
+             if(registid.equals(rs.getString(1).trim())){
+                 temp=true;
+             }
+System.out.print(temp);
+            }
+
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
     }
 }
 

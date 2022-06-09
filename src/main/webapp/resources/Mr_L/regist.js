@@ -51,13 +51,12 @@ function f3(){
         return false
     }
     else {
-        if(document.getElementById("call").value===""){
-            alert("输入单号为空")
-            return false
-        }
-        else{
-            alert("已呼叫该患者，请耐心等待")
+
+        if(/00000\d{2}/.test(document.getElementById("call").value))
             return true;
+        else{
+            document.getElementById('callForm_error').innerText='格式错误';
+            return false;
         }
 
     }
@@ -68,13 +67,13 @@ function f4(){
         return false
     }
     else {
-        if(document.getElementById("regist").value===""){
-            alert("输入单号为空")
-            return false
+        if(/00000\d{2}/.test(document.getElementById("regist").value))
+            return true;
+        else{
+            document.getElementById('registForm_error').innerText='格式错误';
+            return false;
         }
-        else {
-            alert("已将该单号过号")
-            return true
-        }
+
+
     }
 }

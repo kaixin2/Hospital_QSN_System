@@ -1,8 +1,9 @@
 package com.example.Mr_L.controller;
 
+import com.example.Mr_L.db.DoctorDao;
 import com.example.Mr_L.db.RegistDao;
+import com.example.Mr_L.model.Doctor;
 import com.example.Mr_L.model.Regist;
-
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,27 +12,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet("/CallServlet")
-public class CallServlet extends HttpServlet {
+@WebServlet("/JudgeServlet")
+public class JudgeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String ss=request.getParameter("idname1");
         HttpSession session=request.getSession();
-        String id=(String) session.getAttribute("id");
-
+        String s="2001";
         RegistDao registDao =new RegistDao();
-        if(registDao.Judge(id,ss)) {
-            session.setAttribute("queue",ss);
+       if(session.getAttribute("que")!=null){
+           String id=(String)session.getAttribute("que");
 
-            request.getRequestDispatcher("/RegistServlet").forward(request, response);
-        }
-        else {
-            response.setContentType("text/html;charset=utf-8");
-            PrintWriter out = response.getWriter();
-            out.print("<script>alert('该单号不存在');window.location.href='RegistServlet'</script>");
-        }
+           List<Regist> list2=registDao.findFinish(s,id);
+           request.setAttribute("list2",list2);
+       }
+       else{
+           List<Regist> list2=registDao.findAll(s);
+           request.setAttribute("list2",list2);
+       }
+        request.getRequestDispatcher("resources/Mr_L/regist.jsp").forward(request, response);
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);

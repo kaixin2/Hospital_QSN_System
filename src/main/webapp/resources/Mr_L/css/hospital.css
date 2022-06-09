@@ -10,10 +10,7 @@
 .regist-out{
     margin:5px;border:0;padding:0;
 }
-.operate{
- text-align: center;
-    margin:5px;border:0;padding:0;
-}
+
 .head{
     height: 200px;
     width: 100%;
@@ -72,8 +69,8 @@
 }
 .work{
 
-    width: 100px;
-    height:100px;
+    width: 1000px;
+    height:1000px;
 }
 .all{
     width: 100px;
@@ -93,4 +90,7 @@ position: fixed;
     width: 500px;
     height: 500px;
     border: 0;
+}
+.error{
+    color:red;
 }

@@ -20,43 +20,35 @@
 <body>
 
 <input type="button" value="暂停" id="pause" onclick="f1()">
-
-<div class="regist-out">
-<table class="regist" id="mytable" align="center" border="1px" cellspacing="1px" cellpadding="1px" class="table">
-  <tr ><th colspan="3">挂号队列</th></tr>
-  <tr>
-    <th class="th">单号</th>
-    <th class="th">医生工号</th>
-    <th class="th">优先级</th>
-  </tr>
-<% for (Regist regist : list2) {
-
-%>
-  <tr>
-    <td><%=regist.getId()%>
-    </td>
-    <td><%=regist.getDoctorid()%>
-    </td>
-    <td><%=regist.getType()%>
-    </td>
-  </tr>
-  <%}%>
-</table>
-
+<div style="margin-left: 70px">
+<div style="float:left;">单号</div><div style="float:left;margin-left:50px;">医生工号</div><div style="float:left;margin-left:50px;">优先级</div>
 </div>
 
-<div class="operate">
-  <form action="PassServlet" method="post" onsubmit="return f3()">
+<% for (Regist regist : list2) {
+%>
+<div style="margin-top: 30px;margin-left: 60px">
+<div style="float:left;"><%=regist.getId()%></div>
+<div style="float:left;margin-left:35px;"><%=regist.getDoctorid()%></div>
+<div style="float:left;margin-left:70px;"><%=regist.getType()%></div>
+</div>
+<br>
+<%}%>
+
+
+<div class="operate" style="margin-top: 50px">
+  <form action="CallServlet" method="post" onsubmit="return f3()">
     单号：<input type="text" name="idname1" id="call">
   <input type="submit" value="叫号"  />
+    <span id="callForm_error"></span>
   </form>
 
   <form action="PassServlet" method="post" onsubmit="return f4()">
-    单号：<input type="text" name="idname" id="regist">
+    单号：<input type="text" name="idname2" id="regist">
   <input type="submit" value="过号" />
+    <span id="registForm_error"></span>
   </form>
   <% String s="在叫号后点击该按钮，若患者已经签到则刷新挂号队列";%>
-  <a href="/Hospital_QSN_System_war_exploded/RegistServlet" style="text-decoration: none " title=<%=s%>>检查</a>
+  <a href="/Hospital_QSN_System_war_exploded/JudgeServlet" style="text-decoration: none " title=<%=s%>>检查</a>
 </div>
 
 </body>
