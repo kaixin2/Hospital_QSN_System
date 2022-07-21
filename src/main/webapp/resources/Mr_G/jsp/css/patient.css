@@ -1,0 +1,88 @@
+table, th, td {
+    border: solid 1px #efefef;
+}
+table {
+    width: 100%;
+    margin: auto;
+    border-collapse: collapse;
+    text-align: center;
+    border-radius: 6px;
+}
+td,th{
+    padding: 10px;
+}
+a {
+    text-decoration-line: none;
+    color: green;
+}
+a:hover {
+    color: brown;
+    text-decoration-line: underline;
+}
+tr:first-child {
+    background-color: #efefef;
+    border-radius: 4px 4px 0 0;
+    border-bottom: solid 1px #ddd;
+}
+table caption {
+    font-size: 1.5rem;
+    font-weight: bolder;
+    margin-bottom: 20px;
+}
+p {
+    text-align: center;
+}
+/*首页样式*/
+p a:first-child {
+    width: 56px;
+}
+p a:last-child {
+    width: 56px;
+}
+p a {
+    display: inline-block;
+    width: 28px;
+    height: 24px;
+    border: 1px solid green;
+    margin-left:2px;
+    line-height: 24px;
+}
+.active {
+    background-color: green;
+    color: white;
+}
+.more {
+    border: none;
+}
+.shadow_css {
+    display: none;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color:black;
+    z-index: 10;
+    /* 为mozilla firefox 设置透明度  */
+    -moz-opacity: 0.6;
+    /* 设置透明度 */
+    opacity: .60;
+    /* 为IE 设置透明度  */
+    filter: alpha(opacity=66);
+}
+
+.window_css {
+    display: none;
+    position: absolute;
+    top: 20%;
+    left: 25%;
+    width: 50%;
+    height: 60%;
+    border: 3px solid honeydew;
+    background-color: white;
+    z-index: 11;
+}
+.window_css a{
+    float:right;
+}
+
